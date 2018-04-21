@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="pagination">
+
+    <!-- Pagination -->
+    <ul class="pagination" >
+	<!-- last page -->
+	<li class="page-item" data-th-classappend="*{first} ? 'disabled' : ''">
+		<a href="javascript:void(0);" class="page-link" data-th-attr="pageIndex=${products.number} - 1" aria-label="Previous">
+			<span aria-hidden="true">«</span>
+		</a>
+	</li>
+	
+	<!-- page number -->
+	<li class="page-item" data-th-each="i : ${#numbers.sequence(1, products.totalPages)}" 
+		data-th-classappend="${(products.number + 1) eq i} ? 'active' : ''" >
+		<a class="page-link" data-th-attr="pageIndex=${i} - 1" href="javascript:void(0);">
+             <span data-th-text="${i}"></span>
+        </a>
+	</li>
+	
+	<!-- next page -->
+	<li class="page-item" data-th-classappend="*{last} ? 'disabled' : ''">
+		<a href="javascript:void(0);" class="page-link" data-th-attr="pageIndex=${products.number} + 1" aria-label="Next">
+			<span aria-hidden="true">»</span>
+		</a>
+	</li>
+</ul>
+
+</div>
+</body>
+</html>
